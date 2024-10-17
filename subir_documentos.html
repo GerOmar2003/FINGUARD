@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Documentos - Oficina de Cooperaciones Internacionales</title>
+    <link rel="stylesheet" href="subir_documentos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <h2><i class="fas fa-upload"></i> Subir Documentos</h2>
+        <p>Por favor, completa el siguiente formulario para subir tus documentos necesarios para el préstamo personal.</p>
+
+        <form action="#" method="post" enctype="multipart/form-data">
+            <label for="nombre"><i class="fas fa-user"></i> Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Anthoane" required oninput="mostrarInformacion()">
+
+            <label for="apellidos"><i class="fas fa-user-friends"></i> Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Julca" required oninput="mostrarInformacion()">
+
+            <label for="genero"><i class="fas fa-venus-mars"></i> Género:</label>
+            <div class="genero">
+                <label><input type="radio" name="genero" value="varon" required onchange="mostrarIcono()"> Varón <i class="fas fa-male"></i></label>
+                <label><input type="radio" name="genero" value="mujer" required onchange="mostrarIcono()"> Mujer <i class="fas fa-female"></i></label>
+            </div>
+
+            <label for="semestre"><i class="fas fa-calendar-alt"></i> Semestre:</label>
+            <select id="semestre" name="semestre" required oninput="mostrarInformacion()">
+                <option value="" disabled selected>Seleccione un semestre</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+            </select>
+
+            <label for="carrera"><i class="fas fa-graduation-cap"></i> Carrera:</label>
+            <select id="carrera" name="carrera" required oninput="mostrarInformacion()">
+                <option value="" disabled selected>Seleccione una carrera</option>
+                <option value="IngSistemas">Ingeniería de Sistemas</option>
+                <option value="IngIndustrial">Ingeniería Industrial</option>
+                <option value="IngCivil">Ingeniería Civil</option>
+                <option value="IngMecatronica">Ingeniería Mecatrónica</option>
+                <option value="IngElectrica">Ingeniería Eléctrica</option>
+                <option value="CienciasComunicacion">Ciencias de la Comunicación</option>
+                <option value="Administracion">Administración</option>
+                <option value="Derecho">Derecho</option>
+                <option value="Contabilidad">Contabilidad</option>
+                <option value="Arquitectura">Arquitectura</option>
+                <option value="Biologia">Biología</option>
+                <option value="Psicologia">Psicología</option>
+                <option value="Nutricion">Nutrición</option>
+                <option value="Enfermeria">Enfermería</option>
+                <option value="Educacion">Educación</option>
+                <!-- Agregar más carreras según corresponda -->
+            </select>
+
+            <label for="email"><i class="fas fa-envelope"></i> Correo Electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Ej. Anthoane.Julca@undac.edu.pe" required oninput="validarCorreo()">
+            <small id="mensaje-email" class="mensaje-error" style="display: none; color: red;">Debe ser un correo institucional (@undac.edu.pe).</small>
+
+            <label for="documento-notas"><i class="fas fa-file-upload"></i> Selecciona tu récord de notas:</label>
+            <input type="file" id="documento-notas" name="documento-notas" accept=".pdf,.doc,.docx" required>
+
+            <label for="documento-carta"><i class="fas fa-file-upload"></i> Selecciona la carta de solicitud:</label>
+            <input type="file" id="documento-carta" name="documento-carta" accept=".pdf,.doc,.docx" required>
+
+            <button type="submit"><i class="fas fa-cloud-upload-alt"></i> Subir Documentos</button>
+        </form>
+
+        <div id="informacion-alumno" class="informacion-alumno" style="display: none;">
+            <h3><i class="fas fa-info-circle"></i> Información del Alumno</h3>
+            <p id="info"></p>
+            <canvas id="grafico-avance" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function mostrarInformacion() {
+            const nombre = document.getElementById('nombre').value;
+            const apellidos = document.getElementById('apellidos').value;
+            const semestre = document.getElementById('semestre').value;
+            const carrera = document.getElementById('carrera').value;
+            const info = `Nombre: ${nombre} ${apellidos}\nCarrera: ${carrera}\nSemestre: ${semestre}\nCursos: 3`;
+            document.getElementById('info').innerText = info;
+
+            // Muestra la sección de información
+            document.getElementById('informacion-alumno').style.display = 'block';
+
+            // Configura el gráfico
+            const ctx = document.getElementById('grafico-avance').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Curso 1', 'Curso 2', 'Curso 3'],
+                    datasets: [{
+                        label: 'Avance Académico',
+                        data: [85, 90, 75], // Ejemplo de datos
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function mostrarIcono() {
+            const genero = document.querySelector('input[name="genero"]:checked');
+            if (genero) {
+                console.log(`Género seleccionado: ${genero.value}`);
+            }
+        }
+
+        function validarCorreo() {
+            const email = document.getElementById('email').value;
+            const mensaje = document.getElementById('mensaje-email');
+            const regex = /@undac\.edu\.pe$/;
+
+            if (!regex.test(email)) {
+                mensaje.style.display = 'block';
+            } else {
+                mensaje.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

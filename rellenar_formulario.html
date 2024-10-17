@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rellenar Formulario - Oficina de Cooperaciones Internacionales</title>
+    <link rel="stylesheet" href="rellenar_formulario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <h2><i class="fas fa-pencil-alt"></i> Rellenar Formulario</h2>
+        <p>Por favor, completa el siguiente formulario para enviar tu solicitud de préstamo personal.</p>
+
+        <form id="formulario" onsubmit="validarFormulario(event)">
+            <label for="nombre"><i class="fas fa-user"></i> Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Omar" required>
+
+            <label for="apellidos"><i class="fas fa-user-friends"></i> Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Fernández" required>
+
+            <label for="semestre"><i class="fas fa-calendar-alt"></i> Semestre:</label>
+            <select id="semestre" name="semestre" required>
+                <option value="" disabled selected>Seleccione un semestre</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+            </select>
+
+            <label for="carrera"><i class="fas fa-graduation-cap"></i> Carrera:</label>
+            <select id="carrera" name="carrera" required>
+                <option value="" disabled selected>Seleccione una carrera</option>
+                <option value="IngSistemas">Ingeniería de Sistemas</option>
+                <option value="IngIndustrial">Ingeniería Industrial</option>
+                <option value="IngCivil">Ingeniería Civil</option>
+                <option value="IngMecatronica">Ingeniería Mecatrónica</option>
+                <option value="IngElectrica">Ingeniería Eléctrica</option>
+                <option value="CienciasComunicacion">Ciencias de la Comunicación</option>
+                <option value="Administracion">Administración</option>
+                <option value="Derecho">Derecho</option>
+                <option value="Contabilidad">Contabilidad</option>
+                <option value="Arquitectura">Arquitectura</option>
+                <option value="Biologia">Biología</option>
+                <option value="Psicologia">Psicología</option>
+                <option value="Nutricion">Nutrición</option>
+                <option value="Enfermeria">Enfermería</option>
+                <option value="Educacion">Educación</option>
+                <!-- Agregar más carreras según corresponda -->
+            </select>
+
+            <label><i class="fas fa-file-upload"></i> Documentos Subidos:</label>
+            <ul id="documentos-subidos">
+                <li>Récord de Notas: [Nombre del archivo]</li>
+                <li>Carta de Solicitud: [Nombre del archivo]</li>
+            </ul>
+
+            <button type="submit"><i class="fas fa-paper-plane"></i> Enviar Solicitud</button>
+            <div id="mensaje" class="mensaje" style="display: none;"></div>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function validarFormulario(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+            const documentosSubidos = true; // Lógica para verificar si los documentos están subidos
+
+            const mensajeDiv = document.getElementById('mensaje');
+            if (!documentosSubidos) {
+                mensajeDiv.innerText = 'No se subieron los documentos. La solicitud ha sido cancelada.';
+                mensajeDiv.style.color = 'red';
+                setTimeout(() => {
+                    window.location.href = 'prestamos_personales.html'; // Redirigir a la pestaña anterior
+                }, 3000);
+            } else {
+                mensajeDiv.innerText = 'La solicitud se envió correctamente. En 24 horas habrá una respuesta. Caso contrario, comuníquese con un encargado de cooperación.';
+                mensajeDiv.style.color = 'green';
+            }
+            mensajeDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

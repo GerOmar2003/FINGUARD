@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulos - Oficina de Cooperaciones Internacionales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        .modulo {
+            position: relative; /* Posición relativa para el módulo */
+            padding: 20px; /* Espaciado interno */
+            border: 1px solid #ccc; /* Borde del módulo */
+            border-radius: 8px; /* Bordes redondeados */
+            margin: 20px; /* Espacio entre módulos */
+            cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+        .modulo:hover {
+            background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+        }
+        .icono {
+            position: absolute; /* Posicionamiento absoluto */
+            top: -20px; /* Ajusta la posición vertical */
+            left: 20px; /* Ajusta la posición horizontal */
+            font-size: 2em; /* Tamaño del ícono */
+            background-color: white; /* Fondo blanco para el ícono */
+            border-radius: 50%; /* Redondear el fondo del ícono */
+            padding: 10px; /* Espaciado alrededor del ícono */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para el ícono */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos" class="btn-special">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="modulos">
+        <h2>Módulos Disponibles</h2>
+        <div class="modulo" onclick="window.location='finanzas_y_comercial.html'">
+            <div class="icono">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <h3>Finanzas y Comercial</h3>
+            <p>Conoce las oportunidades en el ámbito financiero y comercial para potenciar tus habilidades.</p>
+        </div>
+        <div class="modulo">
+            <div class="icono">
+                <i class="fas fa-book"></i>
+            </div>
+            <h3>Académicos</h3>
+            <p>Consulta los cursos y programas académicos que ofrecemos para enriquecer tu formación.</p>
+        </div>
+        <div class="modulo">
+            <div class="icono">
+                <i class="fas fa-flask"></i>
+            </div>
+            <h3>Investigación</h3>
+            <p>Explora nuestras iniciativas y oportunidades en investigación científica y tecnológica.</p>
+        </div>
+        <div class="modulo">
+            <div class="icono">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h3>Responsabilidad y Proyección Social</h3>
+            <p>Participa en proyectos que impactan positivamente a la comunidad y fomentan la responsabilidad social.</p>
+        </div>
+        <div class="modulo">
+            <div class="icono">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <h3>Proyectos</h3>
+            <p>Descubre nuestros proyectos en colaboración con instituciones nacionales e internacionales.</p>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Contacto</h2>
+        <form action="#" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="consulta">Consulta:</label>
+            <textarea id="consulta" name="consulta" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <p>Síguenos en nuestras redes sociales.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #001f3f; /* Azul marino */
+    color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.logo img {
+    height: 60px; /* Ajusta el tamaño del logo */
+    margin-right: 10px;
+}
+
+nav {
+    margin-left: auto;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ff4136; /* Rojo */
+}
+
+.contenido {
+    padding: 2rem;
+    background-color: #fff;
+    margin: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contenido h2 {
+    color: #001f3f; /* Azul marino */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 0.5rem 0;
+}
+
+form input {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #333; /* Negro */
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #ff4136; /* Rojo */
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background-color: #d40000; /* Rojo oscuro */
+}
+
+.informacion-alumno {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #eef;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #001f3f; /* Azul marino */
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    margin-top: 2rem;
+}

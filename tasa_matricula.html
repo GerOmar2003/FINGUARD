@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasa de Matrícula</title>
+    <link rel="stylesheet" href="tasa_matricula.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="tipos_tasas.html">Tipos de Tasas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <h2><i class="fas fa-calendar-check"></i> Tasa de Matrícula</h2>
+
+        <label for="carrera">Selecciona tu Carrera:</label>
+        <select id="carrera" name="carrera" onchange="filtrarResultados()">
+            <option value="">Seleccionar Carrera</option>
+            <option value="IngSistemas">Ingeniería de Sistemas</option>
+            <option value="IngIndustrial">Ingeniería Industrial</option>
+            <option value="IngCivil">Ingeniería Civil</option>
+            <option value="IngMecatronica">Ingeniería Mecatrónica</option>
+            <option value="IngElectrica">Ingeniería Eléctrica</option>
+            <option value="CienciasComunicacion">Ciencias de la Comunicación</option>
+            <option value="Administracion">Administración</option>
+            <option value="Derecho">Derecho</option>
+            <option value="Contabilidad">Contabilidad</option>
+            <option value="Arquitectura">Arquitectura</option>
+            <option value="Biologia">Biología</option>
+            <option value="Psicologia">Psicología</option>
+            <option value="Nutricion">Nutrición</option>
+            <option value="Enfermeria">Enfermería</option>
+            <option value="Educacion">Educación</option>
+        </select>
+
+        <div class="informacion">
+            <h3>Estadísticas</h3>
+            <p>Total de Alumnos Matriculados: <span id="total-matriculados">150</span></p>
+            <p>Total de Alumnos No Matriculados: <span id="total-no-matriculados">50</span></p>
+        </div>
+
+        <canvas id="grafico-matricula" width="400" height="200"></canvas>
+
+        <button onclick="mostrarTodosMatriculados()" class="btn-mostrar">Mostrar Todo</button>
+        <button onclick="location.href='tasa_inscripcion.html'" class="btn-pagar">Inscribirme Ahora</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const matriculadosPorCarrera = {
+            "IngSistemas": { matriculados: 30, noMatriculados: 5 },
+            "IngIndustrial": { matriculados: 20, noMatriculados: 10 },
+            "IngCivil": { matriculados: 25, noMatriculados: 8 },
+            "IngMecatronica": { matriculados: 15, noMatriculados: 5 },
+            "IngElectrica": { matriculados: 10, noMatriculados: 2 },
+            // Agregar más carreras según sea necesario
+        };
+
+        function filtrarResultados() {
+            const carrera = document.getElementById('carrera').value;
+            if (carrera && matriculadosPorCarrera[carrera]) {
+                const { matriculados, noMatriculados } = matriculadosPorCarrera[carrera];
+                actualizarGrafico(matriculados, noMatriculados);
+                document.getElementById('total-matriculados').textContent = matriculados;
+                document.getElementById('total-no-matriculados').textContent = noMatriculados;
+            } else {
+                // Si no se selecciona una carrera, no muestra nada
+                document.getElementById('total-matriculados').textContent = '0';
+                document.getElementById('total-no-matriculados').textContent = '0';
+                actualizarGrafico(0, 0);
+            }
+        }
+
+        function mostrarTodosMatriculados() {
+            const totalMatriculados = Object.values(matriculadosPorCarrera).reduce((acc, carrera) => acc + carrera.matriculados, 0);
+            const totalNoMatriculados = Object.values(matriculadosPorCarrera).reduce((acc, carrera) => acc + carrera.noMatriculados, 0);
+            actualizarGrafico(totalMatriculados, totalNoMatriculados);
+            document.getElementById('total-matriculados').textContent = totalMatriculados;
+            document.getElementById('total-no-matriculados').textContent = totalNoMatriculados;
+        }
+
+        function actualizarGrafico(matriculados, noMatriculados) {
+            graficoMatricula.data.datasets[0].data = [matriculados, noMatriculados];
+            graficoMatricula.update();
+        }
+
+        // Inicializar gráfico
+        const ctx = document.getElementById('grafico-matricula').getContext('2d');
+        const graficoMatricula = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Matriculados', 'No Matriculados'],
+                datasets: [{
+                    label: 'Total de Alumnos',
+                    data: [150, 50], // Datos iniciales
+                    backgroundColor: ['#0073e6', '#ff4d4d'],
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

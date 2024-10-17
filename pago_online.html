@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago en Línea</title>
+    <link rel="stylesheet" href="pago_online.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="icon" href="logo.png" type="image/png">
+    <script>
+        async function realizarPago(event) {
+            event.preventDefault();
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Obtener los datos del formulario
+            const nombreCompleto = document.getElementById("nombre_completo").value;
+            const dni = document.getElementById("dni").value;
+            const celular = document.getElementById("celular").value;
+            const codigoPago = document.getElementById("codigo_pago").value;
+            const medioPago = document.getElementById("medio_pago").value;
+
+            const fecha = new Date().toLocaleDateString();
+
+            // Crear el contenido del PDF
+            doc.text(`Boleta Electrónica`, 10, 10);
+            doc.text(`Fecha: ${fecha}`, 10, 20);
+            doc.text(`Nombre y Apellido: ${nombreCompleto}`, 10, 30);
+            doc.text(`Número de DNI: ${dni}`, 10, 40);
+            doc.text(`Número de Celular: ${celular}`, 10, 50);
+            doc.text(`Código de Pago: ${codigoPago}`, 10, 60);
+            doc.text(`Medio de Pago: ${medioPago}`, 10, 70);
+
+            doc.save(`boleta_pago_${nombreCompleto.replace(" ", "_")}.pdf`);
+
+            alert("El pago se ha procesado correctamente.");
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <div class="formulario">
+            <h2><i class="fas fa-credit-card"></i> Información de Pago en Línea</h2>
+
+            <form onsubmit="realizarPago(event)">
+                <div class="form-group">
+                    <label for="nombre_completo"><i class="fas fa-user"></i> Nombre y Apellido:</label>
+                    <input type="text" id="nombre_completo" placeholder="Nombre Apellido" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dni"><i class="fas fa-id-card"></i> Número de DNI:</label>
+                    <input type="text" id="dni" placeholder="12345678" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="celular"><i class="fas fa-phone"></i> Número de Celular:</label>
+                    <input type="text" id="celular" placeholder="987654321" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="codigo_pago"><i class="fas fa-money-bill-wave"></i> Código de Pago:</label>
+                    <input type="text" id="codigo_pago" placeholder="Código" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="medio_pago"><i class="fas fa-credit-card"></i> Medio de Pago:</label>
+                    <select id="medio_pago" required>
+                        <option value="" disabled selected>Selecciona un medio</option>
+                        <option value="Yape">Yape</option>
+                        <option value="Plin">Plin</option>
+                        <option value="Lemon">Lemon</option>
+                    </select>
+                </div>
+
+                <button type="submit"><i class="fas fa-paper-plane"></i> Procesar Pago</button>
+            </form>
+        </div>
+
+        <div>
+            <img src="movil.png" alt="Imágenes de movil" class="imagen-movil">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

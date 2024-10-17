@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasa de Préstamo</title>
+    <link rel="stylesheet" href="tasa_prestamo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <h2><i class="fas fa-money-check-alt"></i> Tasa de Préstamo</h2>
+        <p>Detalles sobre la tasa de interés y condiciones para solicitar un préstamo.</p>
+
+        <div class="informacion">
+            <div class="cuadro-info">
+                <h3>Estadísticas de Préstamos</h3>
+                <canvas id="grafico-prestamos" width="400" height="200"></canvas>
+            </div>
+            <div class="cuadro-estadisticas">
+                <h3>Datos Clave</h3>
+                <p><strong>Total de Solicitudes:</strong> 150</p>
+                <p><strong>Préstamos Aprobados:</strong> 120</p>
+                <p><strong>Préstamos en Proceso:</strong> 30</p>
+            </div>
+        </div>
+
+        <button class="btn-solicitar" onclick="location.href='prestamos_personales.html'">Solicitar Préstamo</button>
+        
+        <footer>
+            <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('grafico-prestamos').getContext('2d');
+        const graficoPrestamos = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Solicitudes', 'Aprobados', 'En Proceso'],
+                datasets: [{
+                    label: 'Cantidad',
+                    data: [150, 120, 30],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

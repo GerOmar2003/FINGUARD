@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasa de Inscripción</title>
+    <link rel="stylesheet" href="tasa_inscripcion.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+        </div>
+        <div class="titulo">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <div class="imagen">
+            <img src="tasas.png" alt="Tasas de Inscripción">
+        </div>
+
+        <div class="estadisticas">
+            <h2>Tasa de Inscripción</h2>
+            <p class="descripcion">Visualiza las estadísticas de pago de inscripción entre los alumnos.</p>
+            <div class="info-estadisticas">
+                <div class="cuadro">
+                    <h3>Total de Alumnos</h3>
+                    <p>500</p>
+                </div>
+                <div class="cuadro">
+                    <h3>Alumnos que ya pagaron</h3>
+                    <p>300</p>
+                </div>
+                <div class="cuadro">
+                    <h3>Alumnos en Proceso</h3>
+                    <p>200</p>
+                </div>
+            </div>
+            <canvas id="grafico-estadisticas" width="400" height="200"></canvas>
+            <button class="pagar-btn" onclick="location.href='metodos_pago.html'">Pagar Ahora</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('grafico-estadisticas').getContext('2d');
+        const graficoEstadisticas = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pagados', 'No Pagados'],
+                datasets: [{
+                    label: 'Estadísticas de Pago',
+                    data: [300, 200],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)', // Azul celeste
+                        'rgba(255, 99, 132, 0.6)', // Rojo
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

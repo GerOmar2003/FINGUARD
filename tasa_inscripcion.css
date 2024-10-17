@@ -1,0 +1,117 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fondo claro */
+}
+
+header {
+    background: #0073e6; /* Azul eléctrico */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffcc00; /* Amarillo al pasar el ratón */
+}
+
+.contenido {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.imagen {
+    flex: 1;
+    text-align: center;
+}
+
+.imagen img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.estadisticas {
+    flex: 2;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.descripcion {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.info-estadisticas {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cuadro {
+    background-color: #f8f9fa; /* Fondo claro para los cuadros */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 30%;
+    transition: transform 0.3s;
+}
+
+.cuadro:hover {
+    transform: translateY(-5px);
+    border-color: #0073e6; /* Azul eléctrico al pasar el ratón */
+}
+
+.pagar-btn {
+    background-color: #ff4c4c; /* Rojo */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+.pagar-btn:hover {
+    background-color: #d40000; /* Rojo más oscuro */
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa; /* Fondo claro */
+    margin-top: 40px;
+    color: #333; /* Texto oscuro para el pie de página */
+}

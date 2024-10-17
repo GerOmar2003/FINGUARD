@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Tarjeta</title>
+    <link rel="stylesheet" href="pago_tarjeta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="icon" href="logo.png" type="image/png">
+    <script>
+        async function realizarPago(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe de manera tradicional
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Obtener los datos del formulario
+            const numeroTarjeta = document.getElementById("numero_tarjeta").value;
+            const nombreTitular = document.getElementById("nombre_titular").value;
+            const fechaVencimiento = document.getElementById("fecha_vencimiento").value;
+            const codigoSeguridad = document.getElementById("codigo_seguridad").value;
+
+            // Obtener la fecha actual
+            const fecha = new Date().toLocaleDateString();
+
+            // Crear el contenido del PDF
+            doc.text(`Boleta Electrónica`, 10, 10);
+            doc.text(`Fecha: ${fecha}`, 10, 20);
+            doc.text(`Número de Tarjeta: ${numeroTarjeta}`, 10, 30);
+            doc.text(`Nombre del Titular: ${nombreTitular}`, 10, 40);
+            doc.text(`Fecha de Vencimiento: ${fechaVencimiento}`, 10, 50);
+            doc.text(`Código de Seguridad: ${codigoSeguridad}`, 10, 60);
+
+            // Guardar el PDF
+            doc.save(`boleta_pago_${nombreTitular.replace(" ", "_")}.pdf`);
+
+            // Mostrar mensaje de éxito
+            alert("El pago se ha procesado correctamente.");
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <div class="formulario">
+            <h2><i class="fas fa-credit-card"></i> Información de Pago con Tarjeta</h2>
+
+            <form onsubmit="realizarPago(event)">
+                <div class="form-group">
+                    <label for="numero_tarjeta"><i class="fas fa-credit-card"></i> Número de Tarjeta:</label>
+                    <input type="text" id="numero_tarjeta" placeholder="1234 5678 9012 3456" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre_titular"><i class="fas fa-user"></i> Nombre del Titular:</label>
+                    <input type="text" id="nombre_titular" placeholder="Nombre Apellido" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_vencimiento"><i class="fas fa-calendar-alt"></i> Fecha de Vencimiento:</label>
+                    <input type="month" id="fecha_vencimiento" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="codigo_seguridad"><i class="fas fa-lock"></i> Código de Seguridad (CVV):</label>
+                    <input type="text" id="codigo_seguridad" placeholder="123" required>
+                </div>
+
+                <button type="submit"><i class="fas fa-paper-plane"></i> Procesar Pago</button>
+            </form>
+        </div>
+
+        <div>
+            <img src="Tarjetas.png" alt="Imágenes de tarjetas" class="imagen-tarjetas">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Tarjeta - Detalles</title>
+    <link rel="stylesheet" href="detalles_pago_tarjeta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    <script>
+        function updateFields() {
+            const modalidad = document.getElementById("modalidad").value;
+            const descriptionContainer = document.getElementById("descripcion-container");
+            const descriptionSelect = document.getElementById("descripcion");
+            const amountField = document.getElementById("monto");
+            const codeField = document.getElementById("codigo");
+
+            if (modalidad === "Matricula") {
+                descriptionContainer.style.display = "block";
+            } else {
+                descriptionContainer.style.display = "none";
+                descriptionSelect.value = "";
+                amountField.value = "";
+                codeField.value = "";
+            }
+        }
+
+        function updatePaymentFields() {
+            const description = document.getElementById("descripcion").value;
+            const amountField = document.getElementById("monto");
+            const codeField = document.getElementById("codigo");
+
+            const mappings = {
+                "MATRÍCULA INGRESANTES": { amount: "S/.134.50", code: "066" },
+                "MATRÍCULA INGRESANTES - HERMANOS": { amount: "S/.94.50", code: "069" },
+                "MATRÍCULA SERVIDORES CÓNYUGE - INGRESANTES": { amount: "S/.54.50", code: "073" },
+                "MATRÍCULA POR DISCAPACIDAD - INGRESANTES": { amount: "S/.44.50", code: "073" },
+                "MATRÍCULA VÍCTIMAS DEL TERRORISMO - INGRESANTES": { amount: "S/.44.50", code: "073" },
+                "MATRÍCULA REGULAR": { amount: "S/.44.50", code: "076" },
+                "MATRÍCULA REGULAR - HERMANOS": { amount: "S/.37.50", code: "079" },
+                "MATRÍCULA POR DEPORTISTAS CALIFICADOS": { amount: "S/.44.50", code: "082" },
+                "MATRÍCULA DE SERVIDORES CÓNYUGE - REGULARES": { amount: "S/.29.50", code: "082" },
+                "MATRÍCULA POR PRIMEROS PUESTOS": { amount: "S/.23.50", code: "082" },
+                "MATRÍCULA POR DISCAPACIDAD - REGULARES": { amount: "S/.23.50", code: "082" },
+                "MATRÍCULA VÍCTIMAS DEL TERRORISMO - REGULARES": { amount: "S/.23.50", code: "082" },
+                "MATRÍCULA REACTUALIZACIÓN": { amount: "S/.120.50", code: "085" },
+                "MATRÍCULA SEGUNDA CARRERA PROFESIONAL": { amount: "S/.500.00", code: "01" },
+                "MATRÍCULA CONDICIONAL (por crédito)": { amount: "S/.15.00", code: "045" },
+            };
+
+            if (description in mappings) {
+                amountField.value = mappings[description].amount;
+                codeField.value = mappings[description].code;
+            } else {
+                amountField.value = "";
+                codeField.value = "";
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe de manera tradicional
+            
+            // Obtener los datos del formulario
+            const codigoEstudiante = document.getElementById("codigo_estudiante").value;
+            const nombre = document.getElementById("nombre").value;
+            const apellido = document.getElementById("apellido").value;
+            const semestre = document.getElementById("semestre").value;
+            const carrera = document.getElementById("carrera").value;
+            const monto = document.getElementById("monto").value;
+
+            // Guardar datos en localStorage
+            localStorage.setItem("codigoEstudiante", codigoEstudiante);
+            localStorage.setItem("nombre", nombre);
+            localStorage.setItem("apellido", apellido);
+            localStorage.setItem("semestre", semestre);
+            localStorage.setItem("carrera", carrera);
+            localStorage.setItem("monto", monto);
+
+            // Redirigir a la página de pago
+            window.location.href = "pago_online.html"; 
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de la Universidad Nacional Daniel Alcides Carrión">
+            <h1>UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="vista_principal.html">Inicio</a></li>
+                <li><a href="#programas">Programas de Intercambio</a></li>
+                <li><a href="#convocatorias">Convocatorias</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <h2><i class="fas fa-credit-card"></i> Información de Pago</h2>
+
+        <form class="formulario" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="codigo_estudiante"><i class="fas fa-id-card"></i> Código de Estudiante:</label>
+                <input type="text" id="codigo_estudiante" placeholder="2144403120" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre"><i class="fas fa-user"></i> Nombre:</label>
+                <input type="text" id="nombre" placeholder="Anthoane" required>
+            </div>
+
+            <div class="form-group">
+                <label for="apellido"><i class="fas fa-user"></i> Apellido:</label>
+                <input type="text" id="apellido" placeholder="Julca" required>
+            </div>
+
+            <div class="form-group">
+                <label for="semestre"><i class="fas fa-calendar-alt"></i> Semestre:</label>
+                <select id="semestre" required>
+                    <option value="" disabled selected>Selecciona Semestre</option>
+                    <option value="1">Primer Semestre</option>
+                    <option value="2">Segundo Semestre</option>
+                    <option value="3">Tercer Semestre</option>
+                    <option value="4">Cuarto Semestre</option>
+                    <option value="5">Quinto Semestre</option>
+                    <option value="6">Sexto Semestre</option>
+                    <option value="7">Séptimo Semestre</option>
+                    <option value="8">Octavo Semestre</option>
+                    <option value="9">Noveno Semestre</option>
+                    <option value="10">Décimo Semestre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="carrera"><i class="fas fa-graduation-cap"></i> Carrera:</label>
+                <select id="carrera" required>
+                    <option value="" disabled selected>Selecciona Carrera</option>
+                    <option value="IngSistemas">Ingeniería de Sistemas</option>
+                    <option value="IngIndustrial">Ingeniería Industrial</option>
+                    <option value="IngCivil">Ingeniería Civil</option>
+                    <option value="IngMecatronica">Ingeniería Mecatrónica</option>
+                    <option value="IngElectrica">Ingeniería Eléctrica</option>
+                    <option value="CienciasComunicacion">Ciencias de la Comunicación</option>
+                    <option value="Administracion">Administración</option>
+                    <option value="Derecho">Derecho</option>
+                    <option value="Contabilidad">Contabilidad</option>
+                    <option value="Arquitectura">Arquitectura</option>
+                    <option value="Biologia">Biología</option>
+                    <option value="Psicologia">Psicología</option>
+                    <option value="Nutricion">Nutrición</option>
+                    <option value="Enfermeria">Enfermería</option>
+                    <option value="Educacion">Educación</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="modalidad"><i class="fas fa-money-check-alt"></i> Modalidad de Pago:</label>
+                <select id="modalidad" onchange="updateFields()" required>
+                    <option value="" disabled selected>Selecciona Modalidad</option>
+                    <option value="Matricula">Matrícula</option>
+                    <option value="Cuotas">Cuotas</option>
+                    <option value="Libros y materiales">Libros y materiales</option>
+                    <option value="Seguro estudiantil">Seguro estudiantil</option>
+                    <option value="Alojamiento">Alojamiento</option>
+                    <option value="Comida">Comida</option>
+                    <option value="Tasas">Tasas</option>
+                </select>
+            </div>
+
+            <div id="descripcion-container" class="form-group" style="display: none;">
+                <label for="descripcion"><i class="fas fa-file-alt"></i> Descripción:</label>
+                <select id="descripcion" onchange="updatePaymentFields()">
+                    <option value="" disabled selected>Selecciona Descripción</option>
+                    <option value="MATRÍCULA INGRESANTES">MATRÍCULA INGRESANTES</option>
+                    <option value="MATRÍCULA INGRESANTES - HERMANOS">MATRÍCULA INGRESANTES - HERMANOS</option>
+                    <option value="MATRÍCULA SERVIDORES CÓNYUGE - INGRESANTES">MATRÍCULA SERVIDORES CÓNYUGE - INGRESANTES</option>
+                    <option value="MATRÍCULA POR DISCAPACIDAD - INGRESANTES">MATRÍCULA POR DISCAPACIDAD - INGRESANTES</option>
+                    <option value="MATRÍCULA VÍCTIMAS DEL TERRORISMO - INGRESANTES">MATRÍCULA VÍCTIMAS DEL TERRORISMO - INGRESANTES</option>
+                    <option value="MATRÍCULA REGULAR">MATRÍCULA REGULAR</option>
+                    <option value="MATRÍCULA REGULAR - HERMANOS">MATRÍCULA REGULAR - HERMANOS</option>
+                    <option value="MATRÍCULA POR DEPORTISTAS CALIFICADOS">MATRÍCULA POR DEPORTISTAS CALIFICADOS</option>
+                    <option value="MATRÍCULA DE SERVIDORES CÓNYUGE - REGULARES">MATRÍCULA DE SERVIDORES CÓNYUGE - REGULARES</option>
+                    <option value="MATRÍCULA POR PRIMEROS PUESTOS">MATRÍCULA POR PRIMEROS PUESTOS</option>
+                    <option value="MATRÍCULA POR DISCAPACIDAD - REGULARES">MATRÍCULA POR DISCAPACIDAD - REGULARES</option>
+                    <option value="MATRÍCULA VÍCTIMAS DEL TERRORISMO - REGULARES">MATRÍCULA VÍCTIMAS DEL TERRORISMO - REGULARES</option>
+                    <option value="MATRÍCULA REACTUALIZACIÓN">MATRÍCULA REACTUALIZACIÓN</option>
+                    <option value="MATRÍCULA SEGUNDA CARRERA PROFESIONAL">MATRÍCULA SEGUNDA CARRERA PROFESIONAL</option>
+                    <option value="MATRÍCULA CONDICIONAL (por crédito)">MATRÍCULA CONDICIONAL (por crédito)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="monto"><i class="fas fa-dollar-sign"></i> Monto:</label>
+                <input type="text" id="monto" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="codigo"><i class="fas fa-code"></i> Código:</label>
+                <input type="text" id="codigo" readonly>
+            </div>
+
+            <button type="submit"><i class="fas fa-paper-plane"></i> Realizar Pago</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Universidad Nacional Daniel Alcides Carrión. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

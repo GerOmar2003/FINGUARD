@@ -1,0 +1,85 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #0073e6; /* Azul eléctrico */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.contenido {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.servicios-lista {
+    text-align: left;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.servicios-lista ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.servicios-lista li {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grafico {
+    margin: 20px 0;
+}
+
+.btn-solicitar {
+    background-color: #ff5733; /* Rojo intenso */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-solicitar:hover {
+    background-color: #c70039; /* Rojo más oscuro */
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+}
